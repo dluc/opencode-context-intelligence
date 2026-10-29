@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OpenCode → Context Intelligence</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+<main>
+  <header class="header-row"><h1>OpenCode <span>→</span> Context Intelligence</h1><button id="toggle-settings" type="button" aria-controls="connection-settings" aria-expanded="false">Settings</button></header>
+  <section id="connection-settings" aria-labelledby="connection-heading" hidden>
+    <div class="section-title"><h2 id="connection-heading">Connection settings <span class="badge" id="auth-mode">Microsoft Entra</span></h2><button id="close-settings" type="button">Close</button></div>
+    <div class="connection settings-source"><div><strong>Read-only source</strong><code id="database">Connecting…</code></div>
+      <div><strong>Upload destination</strong><code id="destination">Not configured · export only</code></div>
+      <div class="export-storage"><strong>Export folder</strong><code id="export-folder">Loading…</code></div></div>
+    <p class="muted">Azure credentials, including <code>az login</code>. Tokens refresh automatically.</p>
+    <form id="connection-form">
+      <div class="connection-fields">
+        <label for="connection-url">url<input id="connection-url" name="url" type="url" placeholder="https://ci.example.com" autocomplete="off" spellcheck="false"></label>
+        <label for="connection-resource">auth_resource<input id="connection-resource" name="auth_resource" type="text" placeholder="api://your-application-id" autocomplete="off" spellcheck="false"></label>
+      </div>
+      <fieldset class="export-options"><legend>Export options</legend>
+        <label class="check"><input id="include-children" type="checkbox" checked> Include child sessions in export</label>
+        <label class="check"><input id="reasoning" type="checkbox" checked> Include reasoning text</label>
+      </fieldset>
+      <div class="connection-save"><button id="save-settings" type="submit">Save</button><button id="test-connection" type="button">Test connection</button></div>
+      <div id="connection-test-result" class="connection-test-result" role="status" aria-live="polite" hidden></div>
+    </form>
+    <p class="notice">Exports may contain sensitive conversation and tool data. Uploads require confirmation.</p>
+  </section>
+  <section id="sessions-panel" aria-labelledby="sessions-heading">
+    <div class="section-title"><h2 id="sessions-heading">Sessions <span id="count" class="badge"></span></h2><button id="refresh">Refresh</button></div>
+    <div class="filters"><label class="grow">Find a session<input id="search" type="search" placeholder="Title, project path, or session ID"></label>
+      <label>Updated since<input id="since" type="date"></label><button id="today">Today</button><button id="all-dates">All dates</button></div>
+    <label class="check"><input type="checkbox" id="show-children"> Show individual child sessions</label>
+    <div class="table-wrap"><table><thead><tr><th><input type="checkbox" id="select-all" aria-label="Select displayed sessions"></th><th>Session / project</th><th>Updated</th><th>Messages</th><th>State</th></tr></thead><tbody id="sessions"></tbody></table></div>
+    <button id="more" hidden>Load more</button>
+    <div class="actions"><strong id="selected">0 selected</strong>
+      <button class="primary" id="export" disabled>Export selected sessions</button></div>
+  </section>
+  <div id="status" role="status" aria-live="polite"></div>
+  <section id="exports-panel" aria-labelledby="exports-heading"><div class="section-title"><h2 id="exports-heading">Local exports</h2></div>
+    <div id="exports"><p class="muted">No exports yet.</p></div></section>
+</main>
+</body>
+</html>

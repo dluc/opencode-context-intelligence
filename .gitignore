@@ -1,0 +1,27 @@
+__pycache__/
+*.pyc
+.venv/
+dist/
+build/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+*.db*
+exports/
+# Local connection details, secrets, receipts, and generated artifacts are private.
+.env
+.env.*
+*.env
+settings.json
+settings.*.json
+.settings-*
+upload.lock
+*.zip
+*.sqlite*
+*.log
+*.log.*
+.state/
+.private/

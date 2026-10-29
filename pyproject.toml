@@ -1,0 +1,16 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "opencode-context-intelligence"
+version = "0.1.0"
+description = "Select OpenCode sessions, export Context Intelligence events, and optionally upload them"
+requires-python = ">=3.11"
+dependencies = ["azure-identity>=1.17,<2"]
+
+[project.scripts]
+opencode-ci = "opencode_ci.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["opencode_ci"]
